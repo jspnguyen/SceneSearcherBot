@@ -8,4 +8,4 @@ Just a fun Discord bot to search for the source of an anime scene screenshot!
 2. Lorem Ipsum
 3. Lorem Ipsum
 
-By jspnguyen
+*By jspnguyen*
