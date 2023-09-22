@@ -27,12 +27,15 @@ async def self(interaction: discord.Interaction, url:str):
     except:
         payload = requests.get(f"https://api.trace.moe/search?url={url}").json()
         title = (payload["result"][0]["filename"]).replace('.mp4', '')
+        
     time_stamp, image_link = payload["result"][0]["from"], payload["result"][0]["image"]
+    rating = round(payload["result"][0]["similarity"] * 100, 2)
     
     time_minutes, time_seconds = int(time_stamp / 60), int(time_stamp % 60)
     
-    embed = discord.Embed(title=f"{title}", description=f"{time_minutes}:{time_seconds}", color=discord.Colour.green())
+    embed = discord.Embed(title=f"{title}", description=f"Accuracy: {rating}%", color=discord.Colour.green())
     embed.set_image(url=image_link)
+    embed.set_footer(text=f"{time_minutes}:{time_seconds}")
     
     await interaction.response.defer()
     await asyncio.sleep(15) 
