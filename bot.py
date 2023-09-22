@@ -29,12 +29,14 @@ async def self(interaction: discord.Interaction, url:str):
         title = (payload["result"][0]["filename"]).replace('.mp4', '')
     time_stamp, image_link = payload["result"][0]["from"], payload["result"][0]["image"]
     
-    embed = discord.Embed(title=f"{title}", description=f"{time_stamp}", color=discord.Colour.green())
+    time_minutes, time_seconds = int(time_stamp / 60), int(time_stamp % 60)
+    
+    embed = discord.Embed(title=f"{title}", description=f"{time_minutes}:{time_seconds}", color=discord.Colour.green())
     embed.set_image(url=image_link)
     
     await interaction.response.defer()
-    await asyncio.sleep(10) 
+    await asyncio.sleep(15) 
     await interaction.followup.send(embed=embed, ephemeral=True)
-        
+
 if __name__ == '__main__':
     bot.run(TOKEN)
