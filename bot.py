@@ -19,6 +19,10 @@ class pre_bot(discord.Client):
 bot = pre_bot()
 tree = app_commands.CommandTree(bot)
 
+# TODO:
+# Different embed colors depending on accuracy
+# Link to anime?
+
 @tree.command(name="search", description="Search for an anime scene", guild=discord.Object(id=1121639089897230516)) # ! Test server
 async def self(interaction: discord.Interaction, url:str):
     try:
